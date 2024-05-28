@@ -5,7 +5,7 @@ const Header = () => {
   return (
     <>
       <div>
-        <p className="m-0 p-3 text-center fs-600">Customized Keychains</p>
+        <p className="m-0 p-3 text-center fs-600">Customized Keychains new</p>
       </div> 
     </>
   )
