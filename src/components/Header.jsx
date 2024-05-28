@@ -1,15 +1,13 @@
-import React from 'react'
-import './Header.scss'
+import React from "react";
+import "./Header.scss";
 
-const Header = () => {
+const Header = ({children}) => {
   return (
-    <>
-      <div className='headerdiv'>
-        <p className="m-0 p-3 text-center fs-600">Customized Keychains</p>
-      </div>
+    <div className="headerdiv d-flex justify-content-between align-items-center">
+      <p className="m-0 p-3 text-center fs-18">Customized Keychains</p>
+      {children}
+    </div>
+  );
+};
 
-    </>
-  )
-}
-
-export default Header
+export default Header;
