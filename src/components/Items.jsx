@@ -78,6 +78,7 @@ const Items = () => {
           <div
             className="itemcontainer"
             onClick={() => handleItemClick(item)}
+            sno={item.sno}
             key={item.id} // Use a unique identifier if available
           >
             <div>
@@ -121,8 +122,8 @@ const Items = () => {
                   }
                   className={
                     selectedLetters.indexOf(String.fromCharCode(65 + i)) > -1
-                      ? "letter-selected d-flex justify-content-center align-items-center "
-                      : "disabled d-flex justify-content-center align-items-center"
+                      ? "letter-selected d-flex justify-content-center align-items-center fs-10"
+                      : "disabled d-flex justify-content-center align-items-center fs-10"
                   }
                 >
                   {String.fromCharCode(65 + i)}
