@@ -1,0 +1,35 @@
+@import '../styles/variables.scss';
+
+
+.itemsdiv{
+    display: grid;
+    grid-template-columns: auto auto;
+    gap:20px;
+    width:95%;
+    margin:auto;
+
+    .itemcontainer{
+        border:1px solid rgb(211, 211, 211);
+        border-radius:10px     ;
+        -webkit-border-radius:10px    ;
+        -moz-border-radius:10px    ;
+        -ms-border-radius:10px    ;
+        -o-border-radius:10px    ;
+}
+    .image{
+        width:100%;
+        border-radius: 10px 10px 0px 0px;
+        -webkit-border-radius: 10px 10px 0px 0px;
+        -moz-border-radius: 10px 10px 0px 0px;
+        -ms-border-radius: 10px 10px 0px 0px;
+        -o-border-radius: 10px 10px 0px 0px;
+}
+.price{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:$primary;
+    font-weight: bold;
+    
+}
+}

@@ -1,0 +1,34 @@
+export const itemslist=[
+    {
+        price:80,
+        imageurl:'https://lh3.googleusercontent.com/pw/AP1GczPDtEppj1vqywmiVHsIymPonLjnzpp4kUFg-qnV10-q7bFBAUY8D3Sx3dNPRRf_JZTMBy_WP5ecCrTyhYhhJBf7HBBbu4DWQKaCQvfu2dJabtkCJRkQ=w2400'
+    },
+    {
+        price:80,
+        imageurl:'https://lh3.googleusercontent.com/pw/AP1GczPDtEppj1vqywmiVHsIymPonLjnzpp4kUFg-qnV10-q7bFBAUY8D3Sx3dNPRRf_JZTMBy_WP5ecCrTyhYhhJBf7HBBbu4DWQKaCQvfu2dJabtkCJRkQ=w2400'
+    },
+    {
+        price:80,
+        imageurl:'https://lh3.googleusercontent.com/pw/AP1GczPDtEppj1vqywmiVHsIymPonLjnzpp4kUFg-qnV10-q7bFBAUY8D3Sx3dNPRRf_JZTMBy_WP5ecCrTyhYhhJBf7HBBbu4DWQKaCQvfu2dJabtkCJRkQ=w2400'
+    },
+    {
+        price:80,
+        imageurl:'https://lh3.googleusercontent.com/pw/AP1GczPDtEppj1vqywmiVHsIymPonLjnzpp4kUFg-qnV10-q7bFBAUY8D3Sx3dNPRRf_JZTMBy_WP5ecCrTyhYhhJBf7HBBbu4DWQKaCQvfu2dJabtkCJRkQ=w2400'
+    },
+    {
+        price:80,
+        imageurl:'https://lh3.googleusercontent.com/pw/AP1GczPDtEppj1vqywmiVHsIymPonLjnzpp4kUFg-qnV10-q7bFBAUY8D3Sx3dNPRRf_JZTMBy_WP5ecCrTyhYhhJBf7HBBbu4DWQKaCQvfu2dJabtkCJRkQ=w2400'
+    },
+    {
+        price:80,
+        imageurl:'https://lh3.googleusercontent.com/pw/AP1GczPDtEppj1vqywmiVHsIymPonLjnzpp4kUFg-qnV10-q7bFBAUY8D3Sx3dNPRRf_JZTMBy_WP5ecCrTyhYhhJBf7HBBbu4DWQKaCQvfu2dJabtkCJRkQ=w2400'
+    },
+    {
+        price:80,
+        imageurl:'https://lh3.googleusercontent.com/pw/AP1GczPDtEppj1vqywmiVHsIymPonLjnzpp4kUFg-qnV10-q7bFBAUY8D3Sx3dNPRRf_JZTMBy_WP5ecCrTyhYhhJBf7HBBbu4DWQKaCQvfu2dJabtkCJRkQ=w2400'
+    },
+    {
+        price:80,
+        imageurl:'https://lh3.googleusercontent.com/pw/AP1GczPDtEppj1vqywmiVHsIymPonLjnzpp4kUFg-qnV10-q7bFBAUY8D3Sx3dNPRRf_JZTMBy_WP5ecCrTyhYhhJBf7HBBbu4DWQKaCQvfu2dJabtkCJRkQ=w2400'
+    }
+]
