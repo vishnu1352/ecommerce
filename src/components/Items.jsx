@@ -26,7 +26,21 @@ const Items = () => {
         ? prev.filter((l) => l !== letter)
         : [...prev, letter]
     );
-  };
+}
+
+// const handleCheckboxChange = (letter) => {
+//   setSelectedLetters((prev) => {
+//     const newSet = new Set(prev);
+//     if (newSet.has(letter)) {
+//       newSet.delete(letter);
+//     } else {
+//       newSet.add(letter);
+//     }
+//     return Array.from(newSet);
+//   });
+// }
+
+  
   const filteredItems = itemslist.filter((item) => {
     if (
       selectedLetters.length === 0 ||
