@@ -48,6 +48,7 @@ box-shadow: 0px 0px 9px 1px rgba(0,0,0,0.35);
     -ms-border-radius: 5px;
     -o-border-radius: 5px;
     width:30px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 .disabled{
     border:1px solid $primary;
