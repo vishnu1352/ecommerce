@@ -15,7 +15,7 @@ export const itemslist = [
   },
   {
     sno: 3,
-    price: 80,
+    price: 100,
     letter: "s",
     imageurl:
       "https://lh3.googleusercontent.com/pw/AP1GczNOkLeaDshRM3JybRP32MrCVH2hYyMtFKMXQILGLu8bFYxAxCFX2wM7nR1cbhVrSQRvnx6otQ7rRf_zeYq12d5IVtoKUJ3yxViXxN8f_EeEXMwH0jhj=w2400",
