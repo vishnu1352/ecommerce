@@ -26,21 +26,20 @@ const Items = () => {
         ? prev.filter((l) => l !== letter)
         : [...prev, letter]
     );
-}
+  };
 
-// const handleCheckboxChange = (letter) => {
-//   setSelectedLetters((prev) => {
-//     const newSet = new Set(prev);
-//     if (newSet.has(letter)) {
-//       newSet.delete(letter);
-//     } else {
-//       newSet.add(letter);
-//     }
-//     return Array.from(newSet);
-//   });
-// }
+  // const handleCheckboxChange = (letter) => {
+  //   setSelectedLetters((prev) => {
+  //     const newSet = new Set(prev);
+  //     if (newSet.has(letter)) {
+  //       newSet.delete(letter);
+  //     } else {
+  //       newSet.add(letter);
+  //     }
+  //     return Array.from(newSet);
+  //   });
+  // }
 
-  
   const filteredItems = itemslist.filter((item) => {
     if (
       selectedLetters.length === 0 ||
@@ -50,25 +49,41 @@ const Items = () => {
     }
   });
 
-  const placeOrder = (url, price, remarks, district) => {
+  const placeOrder = (url, price, remarks, district, name, address) => {
+    if (name === "") {
+      alert("Please Enter Your Name");
+      return false;
+    }
     if (district === "") {
       alert("Please Enter District");
       return false;
     }
+    if (address === "") {
+      alert("Please Enter address");
+      return false;
+    }
 
-    let redirecturl =
-      "https://api.whatsapp.com/send?phone=9849888788&text=%0a Price : " +
-      price +
-      "%0a District : " +
-      district +
-      "%0aCustomizations : " +
-      remarks +
-      "%0a %0a" +
-      url;
-    setTimeout(() => {
-      window.location.href = redirecturl;
-    }, 500);
-    setShowModal(false);
+    // eslint-disable-next-line no-restricted-globals
+    if (confirm("Press OK to place your order !")) {
+      let redirecturl =
+        "https://api.whatsapp.com/send?phone=9849888788&text=%0a Name : " +
+        name +
+        "%0a Price : " +
+        price +" %2B shipping"+
+        "%0a Address : " +
+        address +
+        "%0a District : " +
+        district +
+        "%0aCustomizations : " +
+        remarks +
+        "%0a %0a" +
+        url;
+      setTimeout(() => {
+        window.location.href = redirecturl;
+      }, 500);
+      setShowModal(false);
+    } else {
+    }
   };
 
   const handleItemClick = (item) => {

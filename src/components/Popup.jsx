@@ -9,13 +9,18 @@ import Modalcomponent from "./Modalcomponent";
 const Popup = ({ toggle, toggleModal, data, doorder }) => {
   const [remarks, setRemarks] = useState("");
   const [district, setDistrict] = useState("");
+  const [name, setName] = useState("");
+  const [address, setAddress] = useState("");
   const handleInputClick = (event) => {
     event.stopPropagation(); // Prevent event from bubbling up to the modal
   };
   function handleInputChange(event) {
     setRemarks(event.target.value);
   }
-  console.log(data);
+  function handleAddress(event){
+    setAddress(event.target.value);
+  }
+  
   return (
     <>
       <Modalcomponent
@@ -25,7 +30,7 @@ const Popup = ({ toggle, toggleModal, data, doorder }) => {
       >
         <div className="d-flex gap-3 align-items-center ">
           <div>
-            <a href={data.imageurl} target="_blank" >
+            <a href={data.imageurl} target="_blank">
               <img
                 src={data.imageurl}
                 alt={data.price}
@@ -45,14 +50,35 @@ const Popup = ({ toggle, toggleModal, data, doorder }) => {
           <Form>
             <Form.Control
               type="text"
+              placeholder="Enter Your Name"
+              value={name}
+              onClick={handleInputClick}
+              onChange={(e) => setName(e.target.value)}
+              className="mb-3"
+            />
+
+            <Form.Control
+              type="text"
               placeholder="Enter your District"
               value={district}
               onClick={handleInputClick}
               onChange={(e) => setDistrict(e.target.value)}
               className="mb-3"
             />
+
+            
+              <Form.Control
+                as="textarea"
+                rows={3}
+                onClick={handleInputClick}
+                placeholder="Enter Your Complete Address"
+                value={address}
+                onChange={handleAddress}
+              />
+            
+
             <Form.Group
-              className="mb-3"
+              className="mb-3 mt-3"
               controlId="exampleForm.ControlTextarea1"
             >
               <Form.Control
@@ -74,7 +100,7 @@ const Popup = ({ toggle, toggleModal, data, doorder }) => {
             variant="primary"
             className="placeorder-button"
             onClick={() => {
-              doorder(data.imageurl, data.price, remarks, district);
+              doorder(data.imageurl, data.price, remarks, district, name,address);
               setRemarks("");
             }}
           >
