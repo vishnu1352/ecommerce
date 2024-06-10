@@ -181,4 +181,88 @@ export const itemslist = [
     imageurl:
       "https://lh3.googleusercontent.com/pw/AP1GczOJMoFLs8QqPp1GaGp3eV7U1u1XLg72oOa2GARbFQz8HHh8SXD14uNex9DxazWE0lauzCVUVooXszlUHwZSDjCqXUsVgEEa3kpg9vBK8EbUdTCa3qIJ=w2400",
   },
+  {
+    sno: 27,
+    price: 100,
+    letter: "m",
+    imageurl:
+      "https://lh3.googleusercontent.com/pw/AP1GczPv104QQYSY00ldL8zldg-LM3F9mRxrv5bKCzSgL0FZlzbmrCGHPXbspYbiI-fvpvXU6yPEdG01JFs_q23oSeBRMUcma59fjtfsBZzccQC3dQHM0oc2=w2400",
+  },
+  {
+    sno: 28,
+    price: 100,
+    letter: "v",
+    imageurl:
+      "https://lh3.googleusercontent.com/pw/AP1GczPd4G_OT1X3FKchwXcsknXQqwQkrY1VrLcL9Snk4eqjhLbo70whNp1xIWejuS9YRVLywD58i-cMzC5SGMN9Ac0FZxEeVdkla1mxP5ONRD-Mf0etNr09=w2400",
+  },
+  {
+    sno: 29,
+    price: 100,
+    letter: "k",
+    imageurl:
+      "https://lh3.googleusercontent.com/pw/AP1GczOAs-DlrEb5b-W5qKkAAmgjWpAEzalSGcq0YwwWYvIFRrOvnsZLhAl-sN-Eo3vxIAJRurraDhaXkTd_4k15qYgwQFEi-fRsAe-5RduMr3EjCXMT_C0L=w2400",
+  },
+  {
+    sno: 30,
+    price: 100,
+    letter: "d",
+    imageurl:
+      "https://lh3.googleusercontent.com/pw/AP1GczPULsHEf_Of-9rOUoey3-csrQlzbWpA7eM3j8LsGvyl_d7YGk-LdzZIWFGPgbK560X7226ywQz5aTKEbnrFt4b7msomWDaIXNULDrvdQNOdAUr6AfRK=w2400",
+  },
+  {
+    sno: 31,
+    price: 100,
+    letter: "r",
+    imageurl:
+      "https://lh3.googleusercontent.com/pw/AP1GczOzuYYpXZMTA5uP8jUsKowQ2f5cSgotBsMS9rjck_Sf2-j0oEQqfcsB6hOIcIJeg84NuJyJOvB_YShpIthlq4VS2Z39GetLUWA_MWX89U0OQXcK2cB2=w2400",
+  },
+  {
+    sno: 32,
+    price: 100,
+    letter: "v",
+    imageurl:
+      "https://lh3.googleusercontent.com/pw/AP1GczPL9sITjeI-hQolv9y9G52326B_7Bk21ztZf9Yg668caum74BdxqTeoy0qfExm3OotBWu2TG2J88V3-5T310fZEwzvrdjMUw1RfhrngYr8MCluJvGiY=w2400",
+  },
+  {
+    sno: 33,
+    price: 100,
+    letter: "r",
+    imageurl:
+      "https://lh3.googleusercontent.com/pw/AP1GczPWH4LibJyxgAKx23mSsgD-QzA0YAjxQwWyp3349T7RF6PeFgH9We2lykorWw_fjUJVsT6ByeId1w5GzorG-qsbpKOce_uwCQYLr0iD-fyKPVVqkcz0=w2400",
+  },
+  {
+    sno: 34,
+    price: 100,
+    letter: "b",
+    imageurl:
+      "https://lh3.googleusercontent.com/pw/AP1GczMznf97A5Ye_K3JDGB3TI4i8rmu9bpPJ6qKOIPZ5rb0guGc39nrGxWvYoUFeMhHbGz9rd61m3Rg_cHcjy4SCWKwTEc1mwsSHfF-TMsy8OZKvaNYcblS=w2400",
+  },
+  {
+    sno: 35,
+    price: 100,
+    letter: "b",
+    imageurl:
+      "https://lh3.googleusercontent.com/pw/AP1GczOXLs0uArTL1BT1BFImtWYMlHtYbW7lXcVTi48QIaE5_FoKCTpYBtr_27OKslVcntBc90oW7AIr-8IgLCR_pz0eSEiWOfqCizgrn2GIU9HIFTnSyCiM=w2400",
+  },
+  {
+    sno: 36,
+    price: 100,
+    letter: "b",
+    imageurl:
+      "https://lh3.googleusercontent.com/pw/AP1GczOcHiHloSMQSMKyyuC6NPxa3XX2B5smnqvhu0Yca4zM9075C38ukbAK3O8t7LwtEQfiuqwi1RM4GizGvBr1_OxHzBarM-b0PGh0_0ygsVMzCc4rdDPM=w2400",
+  },
+  {
+    sno: 37,
+    price: 100,
+    letter: "s",
+    imageurl:
+      "https://lh3.googleusercontent.com/pw/AP1GczMuhy7AXxw33IyH6k6row8C3qhKsSYbFz0Xm4Bygv34gvUBFHmPaw8-akGCvhHK1dNxjqzLRXYWhYFzhPpdTQm86meGe8BxsK8xrSukme8cnl_EDjwE=w2400",
+  },
+  {
+    sno: 38,
+    price: 100,
+    letter: "p",
+    imageurl:
+      "https://lh3.googleusercontent.com/pw/AP1GczMqqBV1dBhSTaiF7AFUb3MABleeJ0-aZ_O2l5B5_jXn847E0YLg7ooofa98jCiD6EcQQkQE3E_0ilett2k5cTaE3p2CBA_tuZhoEPeG8SEZWtWT8uMZ=w2400",
+  },
 ];

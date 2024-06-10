@@ -40,7 +40,9 @@ const Items = () => {
   //   });
   // }
 
-  const filteredItems = itemslist.filter((item) => {
+  const reversedItemsList = [...itemslist].reverse();
+  console.log(reversedItemsList);
+  const filteredItems = reversedItemsList.filter((item) => {
     if (
       selectedLetters.length === 0 ||
       selectedLetters.includes(item.letter.toUpperCase())
