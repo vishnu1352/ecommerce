@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { itemslist } from "../utils/Itemslist";
 import "./Items.scss";
-import { MdCurrencyRupee, MdMenu } from "react-icons/md";
+import { MdCurrencyRupee, MdFilterListAlt } from "react-icons/md";
 import Popup from "./Popup";
 import Header from "./Header";
 import Modalcomponent from "./Modalcomponent";
@@ -11,6 +11,7 @@ const Items = () => {
   const [itemForModal, setItemForModal] = useState(null);
   const [showFilterModal, setShowFilterModal] = useState(false);
   const [selectedLetters, setSelectedLetters] = useState([]);
+  const [showSno, setShowSno] = useState(false);
 
   const toggleModal = () => {
     setShowModal((prev) => !prev);
@@ -71,7 +72,8 @@ const Items = () => {
         "https://api.whatsapp.com/send?phone=9849888788&text=%0a Name : " +
         name +
         "%0a Price : " +
-        price +" %2B shipping"+
+        price +
+        " %2B shipping" +
         "%0a Address : " +
         address +
         "%0a District : " +
@@ -101,7 +103,7 @@ const Items = () => {
           onClick={() => toggleFilterModal()}
           style={{ cursor: "pointer" }}
         >
-          <MdMenu />
+          <MdFilterListAlt />
         </p>
       </Header>
       <div className="itemsdiv my-4">
@@ -124,6 +126,11 @@ const Items = () => {
             <div className="fs-10 d-flex justify-content-center">
               click on image to order
             </div>
+            {showSno && (
+              <div className="fs-10 d-flex justify-content-center">
+                {item.sno}
+              </div>
+            )}
           </div>
         ))}
 
@@ -140,7 +147,12 @@ const Items = () => {
             show={showFilterModal}
             onHide={() => setShowFilterModal((prev) => !prev)}
           >
-            <p className="fs-18">
+            <p
+              className="fs-18"
+              onClick={() => {
+                setShowSno((prev) => !prev);
+              }}
+            >
               <b>Filter By Letter</b>
             </p>
 
