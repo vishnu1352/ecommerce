@@ -12,6 +12,10 @@ const Items = () => {
   const [showFilterModal, setShowFilterModal] = useState(false);
   const [selectedLetters, setSelectedLetters] = useState([]);
   const [showSno, setShowSno] = useState(false);
+  const [sortedItemsList, setSortedItemsList] = useState(
+    [...itemslist].reverse()
+  );
+  const [selectedSort, setSelectedSort] = useState(""); // State to track selected sorting option
 
   const toggleModal = () => {
     setShowModal((prev) => !prev);
@@ -41,15 +45,14 @@ const Items = () => {
   //   });
   // }
 
-  const reversedItemsList = [...itemslist].reverse();
-  console.log(reversedItemsList);
-  const filteredItems = reversedItemsList.filter((item) => {
+  const filteredItems = sortedItemsList.filter((item) => {
     if (
       selectedLetters.length === 0 ||
       selectedLetters.includes(item.letter.toUpperCase())
     ) {
       return item;
     }
+    return false; // Added to satisfy the array filter function's requirement for a boolean return
   });
 
   const placeOrder = (url, price, remarks, district, name, address) => {
@@ -93,6 +96,21 @@ const Items = () => {
   const handleItemClick = (item) => {
     setItemForModal(item);
     toggleModal();
+  };
+
+  const sortBy = (sortby) => {
+      const sorted = [...sortedItemsList].sort((a, b) => {
+        if (sortby === "hl") {
+          return b.price - a.price; // High to Low
+        }
+        if (sortby === "lh") {
+          return a.price - b.price; // Low to High
+        }
+        return 0;
+      });
+      setSortedItemsList(sorted);
+      setSelectedSort(sortby);
+    
   };
 
   return (
@@ -147,6 +165,34 @@ const Items = () => {
             show={showFilterModal}
             onHide={() => setShowFilterModal((prev) => !prev)}
           >
+            <p className="fs-18">
+              <b>Sort By Price</b>
+            </p>
+            <div className="d-flex gap-2 border-bottom-1">
+              <div
+                onClick={() => sortBy("hl")}
+                className={
+                  selectedSort === "hl"
+                    ? "sort-selected fs-12"
+                    : "sort-disabled fs-12"
+                }
+              >
+                High to low
+              </div>
+              <div
+                onClick={() => sortBy("lh")}
+                className={
+                  selectedSort === "lh"
+                    ? "sort-selected fs-12"
+                    : "sort-disabled fs-12"
+                }
+              >
+                Low to High
+              </div>
+            </div>
+
+            <div className="divider my-3"></div>
+
             <p
               className="fs-18"
               onClick={() => {
@@ -156,7 +202,7 @@ const Items = () => {
               <b>Filter By Letter</b>
             </p>
 
-            <div className="d-flex gap-3 flex-wrap">
+            <div className="d-flex gap-2 flex-wrap">
               {Array.from({ length: 26 }, (_, i) => (
                 <div
                   value={String.fromCharCode(65 + i)}
@@ -166,7 +212,7 @@ const Items = () => {
                   className={
                     selectedLetters.indexOf(String.fromCharCode(65 + i)) > -1
                       ? "letter-selected d-flex justify-content-center align-items-center fs-10"
-                      : "disabled d-flex justify-content-center align-items-center fs-10"
+                      : "letter-disabled d-flex justify-content-center align-items-center fs-10"
                   }
                 >
                   {String.fromCharCode(65 + i)}
