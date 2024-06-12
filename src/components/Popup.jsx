@@ -100,7 +100,7 @@ const Popup = ({ toggle, toggleModal, data, doorder }) => {
             variant="primary"
             className="placeorder-button"
             onClick={() => {
-              doorder(data.imageurl, data.price, remarks, district, name,address);
+              doorder(data.imageurl,data.sno, data.price, remarks, district, name,address);
               setRemarks("");
             }}
           >

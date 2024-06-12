@@ -55,7 +55,7 @@ const Items = () => {
     return false; // Added to satisfy the array filter function's requirement for a boolean return
   });
 
-  const placeOrder = (url, price, remarks, district, name, address) => {
+  const placeOrder = (imgurl, sno, price, remarks, district, name, address) => {
     if (name === "") {
       alert("Please Enter Your Name");
       return false;
@@ -72,7 +72,9 @@ const Items = () => {
     // eslint-disable-next-line no-restricted-globals
     if (confirm("Press OK to place your order !")) {
       let redirecturl =
-        "https://api.whatsapp.com/send?phone=9849888788&text=%0a Name : " +
+        "https://api.whatsapp.com/send?phone=9849888788&text=%0aID : " +
+        sno +
+        "%0a Name : " +
         name +
         "%0a Price : " +
         price +
@@ -83,8 +85,9 @@ const Items = () => {
         district +
         "%0aCustomizations : " +
         remarks +
-        "%0a %0a" +
-        url;
+        "%0a %0a UPI ID :  9849888788-2@ybl %0a Registered Name : Vutukuru Radhika %0a %0a 📍 radhikaworks.netlify.app %0a %0a" +
+        imgurl +
+        "%0a %0a *Thank you for choosing us, please process the payment at earliest. We will keep you updated on the status of the product* %0a😃 😃 😃🤝🤝🤝🤝🤝😃 😃 😃";
       setTimeout(() => {
         window.location.href = redirecturl;
       }, 500);
@@ -99,18 +102,17 @@ const Items = () => {
   };
 
   const sortBy = (sortby) => {
-      const sorted = [...sortedItemsList].sort((a, b) => {
-        if (sortby === "hl") {
-          return b.price - a.price; // High to Low
-        }
-        if (sortby === "lh") {
-          return a.price - b.price; // Low to High
-        }
-        return 0;
-      });
-      setSortedItemsList(sorted);
-      setSelectedSort(sortby);
-    
+    const sorted = [...sortedItemsList].sort((a, b) => {
+      if (sortby === "hl") {
+        return b.price - a.price; // High to Low
+      }
+      if (sortby === "lh") {
+        return a.price - b.price; // Low to High
+      }
+      return 0;
+    });
+    setSortedItemsList(sorted);
+    setSelectedSort(sortby);
   };
 
   return (
@@ -125,32 +127,38 @@ const Items = () => {
         </p>
       </Header>
       <div className="itemsdiv my-4">
-        {filteredItems.map((item) => (
-          <div
-            className="itemcontainer"
-            onClick={() => handleItemClick(item)}
-            sno={item.sno}
-            key={item.id} // Use a unique identifier if available
-          >
-            <div>
-              <img src={item.imageurl} alt="keychain" className="image" />
-            </div>
-            <div className="mx-3 mt-2 price">
+        {filteredItems && filteredItems.length > 0 ? (
+          filteredItems.map((item) => (
+            <div
+              className="itemcontainer"
+              onClick={() => handleItemClick(item)}
+              sno={item.sno}
+              key={item.id} // Use a unique identifier if available
+            >
               <div>
-                <MdCurrencyRupee /> {item.price}
+                <img src={item.imageurl} alt="keychain" className="image" />
               </div>
-              <span className="fs-10">+shipping</span>
-            </div>
-            <div className="fs-10 d-flex justify-content-center">
-              click on image to order
-            </div>
-            {showSno && (
+              <div className="mx-3 mt-2 price">
+                <div>
+                  <MdCurrencyRupee /> {item.price}
+                </div>
+                <span className="fs-10">+shipping</span>
+              </div>
               <div className="fs-10 d-flex justify-content-center">
-                {item.sno}
+                click on image to order
               </div>
-            )}
+              {showSno && (
+                <div className="fs-10 d-flex justify-content-center">
+                  {item.sno}
+                </div>
+              )}
+            </div>
+          ))
+        ) : (
+          <div className="d-flex justify-content-center align-items-center">
+            <img src="https://lh3.googleusercontent.com/pw/AP1GczO63fbtt-z8KWCPO2kXnKjhuiKKJbUPXtcC5Mq3VTOjp8XqnJPBsGBgoitFubiL5RQcpcDIrJl7H5vFVlvNl1TFOZzEqlhURmaou0sX7dUv7E8xufCD=s250-p-k" alt="No Results Found" />
           </div>
-        ))}
+        )}
 
         {showModal && (
           <Popup
@@ -166,7 +174,14 @@ const Items = () => {
             onHide={() => setShowFilterModal((prev) => !prev)}
           >
             <p className="fs-18">
-              <b>Sort By Price</b>
+              <b
+                onClick={() => {
+                  setShowSno((prev) => !prev);
+                  setShowFilterModal((prev) => !prev);
+                }}
+              >
+                Sort By Price
+              </b>
             </p>
             <div className="d-flex gap-2 border-bottom-1">
               <div
@@ -193,12 +208,7 @@ const Items = () => {
 
             <div className="divider my-3"></div>
 
-            <p
-              className="fs-18"
-              onClick={() => {
-                setShowSno((prev) => !prev);
-              }}
-            >
+            <p className="fs-18">
               <b>Filter By Letter</b>
             </p>
 
