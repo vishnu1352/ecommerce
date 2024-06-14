@@ -12,17 +12,17 @@ const Popup = ({ toggle, toggleModal, data, doorder }) => {
   const [district, setDistrict] = useState("");
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
-  const [selectedColor,setSelectedColor] = useState(null);
+  const [selectedColor, setSelectedColor] = useState(null);
   const handleInputClick = (event) => {
     event.stopPropagation(); // Prevent event from bubbling up to the modal
   };
   function handleInputChange(event) {
     setRemarks(event.target.value);
   }
-  function handleAddress(event){
+  function handleAddress(event) {
     setAddress(event.target.value);
   }
-  
+
   return (
     <>
       <Modalcomponent
@@ -48,12 +48,24 @@ const Popup = ({ toggle, toggleModal, data, doorder }) => {
             </div>
           </div>
         </div>
-        <div className="mt-3"><b>Select Color</b></div>
+        <div className="mt-3">
+          <b>Select Color</b>
+        </div>
         <div className="d-flex gap-2">
-          {colorCodes.map((color,index)=>{
-            return(
-            <div style={{backgroundColor:color.colorCode}} className={selectedColor===color.name?"color-selected colorpallatediv":"colorpallatediv"} onClick={()=>setSelectedColor(color.name)}></div>
-            )
+          {colorCodes.map((color, index) => {
+            return (
+              <div>
+                <div
+                  style={{ backgroundColor: color.colorCode }}
+                  className={
+                    selectedColor === color.name
+                      ? "color-selected colorpallatediv fs-8 d-flex align-items-center justify-content-center"
+                      : "colorpallatediv fs-8 d-flex align-items-center justify-content-center"
+                  }
+                  onClick={() => setSelectedColor(color.name)}
+                ><div className="text-center">{color.name}</div></div>
+              </div>
+            );
           })}
         </div>
         <div className="mt-3">
@@ -76,16 +88,14 @@ const Popup = ({ toggle, toggleModal, data, doorder }) => {
               className="mb-3"
             />
 
-            
-              <Form.Control
-                as="textarea"
-                rows={3}
-                onClick={handleInputClick}
-                placeholder="Enter Your Complete Address"
-                value={address}
-                onChange={handleAddress}
-              />
-            
+            <Form.Control
+              as="textarea"
+              rows={3}
+              onClick={handleInputClick}
+              placeholder="Enter Your Complete Address"
+              value={address}
+              onChange={handleAddress}
+            />
 
             <Form.Group
               className="mb-3 mt-3"
@@ -110,7 +120,16 @@ const Popup = ({ toggle, toggleModal, data, doorder }) => {
             variant="primary"
             className="placeorder-button"
             onClick={() => {
-              doorder(data.imageurl,data.sno, data.price, remarks, district, name,address,selectedColor);
+              doorder(
+                data.imageurl,
+                data.sno,
+                data.price,
+                remarks,
+                district,
+                name,
+                address,
+                selectedColor
+              );
               setRemarks("");
             }}
           >
