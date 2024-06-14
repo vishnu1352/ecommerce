@@ -6,6 +6,7 @@ import Popup from "./Popup";
 import Header from "./Header";
 import Modalcomponent from "./Modalcomponent";
 
+
 const Items = () => {
   const [showModal, setShowModal] = useState(false);
   const [itemForModal, setItemForModal] = useState(null);
@@ -55,7 +56,7 @@ const Items = () => {
     return false; // Added to satisfy the array filter function's requirement for a boolean return
   });
 
-  const placeOrder = (imgurl, sno, price, remarks, district, name, address) => {
+  const placeOrder = (imgurl, sno, price, remarks, district, name, address,selectedColor) => {
     if (name === "") {
       alert("Please Enter Your Name");
       return false;
@@ -68,6 +69,7 @@ const Items = () => {
       alert("Please Enter address");
       return false;
     }
+    let choosenColor = selectedColor === ''?'transparent':selectedColor;
 
     // eslint-disable-next-line no-restricted-globals
     if (confirm("Press OK to place your order !")) {
@@ -82,7 +84,7 @@ const Items = () => {
         "%0a Address : " +
         address +
         "%0a District : " +
-        district +
+        district + "%0a Selected Color : "+choosenColor+
         "%0aCustomizations : " +
         remarks +
         "%0a %0a UPI ID :  9849888788-2@ybl %0a Registered Name : Vutukuru Radhika %0a %0a 📍 radhikaworks.netlify.app %0a %0a" +
@@ -156,7 +158,10 @@ const Items = () => {
           ))
         ) : (
           <div className="d-flex justify-content-center align-items-center">
-            <img src="https://lh3.googleusercontent.com/pw/AP1GczO63fbtt-z8KWCPO2kXnKjhuiKKJbUPXtcC5Mq3VTOjp8XqnJPBsGBgoitFubiL5RQcpcDIrJl7H5vFVlvNl1TFOZzEqlhURmaou0sX7dUv7E8xufCD=s250-p-k" alt="No Results Found" />
+            <img
+              src="https://lh3.googleusercontent.com/pw/AP1GczO63fbtt-z8KWCPO2kXnKjhuiKKJbUPXtcC5Mq3VTOjp8XqnJPBsGBgoitFubiL5RQcpcDIrJl7H5vFVlvNl1TFOZzEqlhURmaou0sX7dUv7E8xufCD=s250-p-k"
+              alt="No Results Found"
+            />
           </div>
         )}
 

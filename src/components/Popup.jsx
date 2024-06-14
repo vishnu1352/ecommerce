@@ -5,12 +5,14 @@ import { MdCurrencyRupee } from "react-icons/md";
 import { Form } from "react-bootstrap";
 import "./Popup.scss";
 import Modalcomponent from "./Modalcomponent";
+import { colorCodes } from "../utils/Colors";
 
 const Popup = ({ toggle, toggleModal, data, doorder }) => {
   const [remarks, setRemarks] = useState("");
   const [district, setDistrict] = useState("");
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
+  const [selectedColor,setSelectedColor] = useState(null);
   const handleInputClick = (event) => {
     event.stopPropagation(); // Prevent event from bubbling up to the modal
   };
@@ -40,11 +42,19 @@ const Popup = ({ toggle, toggleModal, data, doorder }) => {
             </a>
           </div>
           <div>
-            <div classname="heartbeat">
+            <div className="heartbeat">
               <MdCurrencyRupee />
               {data.price} <span className="fs-10">+shipping</span>
             </div>
           </div>
+        </div>
+        <div className="mt-3"><b>Select Color</b></div>
+        <div className="d-flex gap-2">
+          {colorCodes.map((color,index)=>{
+            return(
+            <div style={{backgroundColor:color.colorCode}} className={selectedColor===color.name?"color-selected colorpallatediv":"colorpallatediv"} onClick={()=>setSelectedColor(color.name)}></div>
+            )
+          })}
         </div>
         <div className="mt-3">
           <Form>
@@ -100,7 +110,7 @@ const Popup = ({ toggle, toggleModal, data, doorder }) => {
             variant="primary"
             className="placeorder-button"
             onClick={() => {
-              doorder(data.imageurl,data.sno, data.price, remarks, district, name,address);
+              doorder(data.imageurl,data.sno, data.price, remarks, district, name,address,selectedColor);
               setRemarks("");
             }}
           >
