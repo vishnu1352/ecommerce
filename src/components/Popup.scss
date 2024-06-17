@@ -19,9 +19,11 @@
         -moz-border-radius:10px  ;
         -ms-border-radius:10px  ;
         -o-border-radius:10px  ;
+        border:1px solid rgba(223, 223, 223, 0.651);
 }
   .color-selected{
         border:2px solid $primary;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
        
         border-radius:10px; 
         -webkit-border-radius:10px  ;

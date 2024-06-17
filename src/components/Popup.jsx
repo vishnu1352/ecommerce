@@ -32,7 +32,7 @@ const Popup = ({ toggle, toggleModal, data, doorder }) => {
       >
         <div className="d-flex gap-3 align-items-center ">
           <div>
-            <a href={data.imageurl} target="_blank">
+            <a href={data.imageurl} target="_blank" rel="noreferrer">
               <img
                 src={data.imageurl}
                 alt={data.price}
@@ -52,7 +52,7 @@ const Popup = ({ toggle, toggleModal, data, doorder }) => {
           <b>Select Color</b>
         </div>
         <div className="d-flex gap-2">
-          {colorCodes.map((color, index) => {
+          {colorCodes.reverse().map((color, index) => {
             return (
               <div>
                 <div

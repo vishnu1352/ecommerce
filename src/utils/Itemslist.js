@@ -265,4 +265,60 @@ export const itemslist = [
     imageurl:
       "https://lh3.googleusercontent.com/pw/AP1GczMqqBV1dBhSTaiF7AFUb3MABleeJ0-aZ_O2l5B5_jXn847E0YLg7ooofa98jCiD6EcQQkQE3E_0ilett2k5cTaE3p2CBA_tuZhoEPeG8SEZWtWT8uMZ=w2400",
   },
+  {
+    sno: 39,
+    price: 120,
+    letter: "p",
+    imageurl:
+      "https://lh3.googleusercontent.com/pw/AP1GczPTVMLD4v2E794_kXmu-g8z4XtWZ6XQUHuuks36qBnBAszefWlVTAVJQ6MCY9sB_ubdampngVU5BXXWfpBkMT0jGMq6lNyr1_zcwwUB4BNE2cttdTYE=w2400",
+  },
+  {
+    sno: 40,
+    price: 120,
+    letter: "v",
+    imageurl:
+      "https://lh3.googleusercontent.com/pw/AP1GczOOP213o6ZdYdrNFMD_yb8RNbcRy0QK9IZfv4m0kqNzgcq-w2UXbHXsaiZjLK0w2N_ZT8z0BZVWNEbLTiOgl4loVdpoqiWPAQs--sAD9rfbHGqVv46f=w2400",
+  },
+  {
+    sno: 41,
+    price: 120,
+    letter: "k",
+    imageurl:
+      "https://lh3.googleusercontent.com/pw/AP1GczOnqrGcFqPmHDAIxtXQj4Vb2zuTg-QLzAbgNmbcblEL8DD74SfidwKchz8nYX8WK8-Z6FH35Lw0YIdnP18fDgArxKFIkzn3BEGyRBs8D86kkhebeqKC=w2400",
+  },
+  {
+    sno: 42,
+    price: 120,
+    letter: "j",
+    imageurl:
+      "https://lh3.googleusercontent.com/pw/AP1GczNdreorOveGkqSnDmq04r7ro6hb8QEREO9UGcGk3nAUW24XZRNWeBDDAcSVPzSoOv-UUQrkELcoMf729DnbTh9rGLx-WoiLpaD213eVCgfPUOuPsOVE=w2400",
+  },
+  {
+    sno: 43,
+    price: 120,
+    letter: "m",
+    imageurl:
+      "https://lh3.googleusercontent.com/pw/AP1GczPifxdfXABLnWFWE_VFqVn7R4uISdEse15vSzGOKJOOZfrfw5p9QotSArgOzrS5x8JNPIUN2kXQJiGfl4Pj1GCuPV1mdHSc2797Sh9-YpAhoTNWrCph=w2400",
+  },
+  {
+    sno: 44,
+    price: 120,
+    letter: "a",
+    imageurl:
+      "https://lh3.googleusercontent.com/pw/AP1GczP2GD28ABjkc_F4OsKUf_BUKkCRxEIob8sws0w70RY67wYAZH1Eso5Z1mIy-sQ8a_DiCuaRjoyw8su7JMdGjgO4V_MtvLgcXz7yIjjtKCnkZzPnoy1S=w2400",
+  },
+  {
+    sno: 45,
+    price: 120,
+    letter: "r",
+    imageurl:
+      "https://lh3.googleusercontent.com/pw/AP1GczPi0Klb13JzO_5Df5sFqdZUcnKK4pNMXrMMdkiJTZ7UcFSUrBJ9VXnR_sNPbd2xJPD55UFyV3y-WJSatFl3psIasQ6qsvBYV8TV6YTx3HGb7DlTIALK=w2400",
+  },
+  {
+    sno: 46,
+    price: 120,
+    letter: "a",
+    imageurl:
+      "https://lh3.googleusercontent.com/pw/AP1GczOOdeyd1Wt3RaMOzM-WfMtpObojCbwRpu52Y9lMpw5mk3jz-LIJ6eqEN9GEexHOphMSl5nraAu76iwZRSeX729q1WJKdNtG_5SLddhVQhjxLiSt4XxB=w2400",
+  },
 ];
