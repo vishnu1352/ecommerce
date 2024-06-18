@@ -72,7 +72,8 @@ const Items = () => {
     district,
     name,
     address,
-    selectedColor
+    selectedColor,
+    selectedLetter
   ) => {
     if (name === "") {
       alert("Please Enter Your Name");
@@ -92,7 +93,8 @@ const Items = () => {
     if (confirm("Press OK to place your order !")) {
       let redirecturl =
         "https://api.whatsapp.com/send?phone=9849888788&text=%0aID : " +
-        sno +
+        sno +"%0a Selected Letter : " +
+        selectedLetter +
         "%0a Name : " +
         name +
         "%0a Price : " +
@@ -108,7 +110,7 @@ const Items = () => {
         remarks +
         "%0a %0a UPI ID :  9849888788-2@ybl %0a Registered Name : Vutukuru Radhika %0a %0a 📍 radhikaworks.netlify.app %0a %0a" +
         imgurl +
-        "%0a %0a *Thank you for choosing us, please process the payment at earliest. We will keep you updated on the status of the product* %0a😃 😃 😃🤝🤝🤝🤝🤝😃 😃 😃";
+        "%0a %0a *Thank you for choosing us, kindly please process the payment at earliest and share us the screenshot. We will keep you updated on the status of the product* %0a😃 😃 😃🤝🤝🤝🤝🤝😃 😃 😃";
       setTimeout(() => {
         window.location.href = redirecturl;
       }, 500);
@@ -136,23 +138,22 @@ const Items = () => {
     setSelectedSort(sortby);
   };
 
-
-
   const filterByType = (type) => {
     setSelectedSortByType((prev) =>
       prev.includes(type) ? prev.filter((t) => t !== type) : [...prev, type]
     );
   };
-  
+
   useEffect(() => {
     const itemsFilteredByType = originalItemsList.filter((item) => {
-      return selectedSortByType.length === 0 || selectedSortByType.includes(item.type);
+      return (
+        selectedSortByType.length === 0 ||
+        selectedSortByType.includes(item.type)
+      );
     });
     setSortedItemsList(itemsFilteredByType);
   }, [selectedSortByType]);
   // Assuming originalItemsList, selectedSortByType, and sortedItemsList are defined somewhere in your component's state.
-  
-  
 
   return (
     <>

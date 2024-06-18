@@ -13,6 +13,7 @@ const Popup = ({ toggle, toggleModal, data, doorder }) => {
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const [selectedColor, setSelectedColor] = useState(null);
+  const [itemPrice, setItemPrice] = useState(data.price);
   const handleInputClick = (event) => {
     event.stopPropagation(); // Prevent event from bubbling up to the modal
   };
@@ -21,6 +22,16 @@ const Popup = ({ toggle, toggleModal, data, doorder }) => {
   }
   function handleAddress(event) {
     setAddress(event.target.value);
+  }
+  function handlePriceBasedOnAddOns(color){
+    if(data.isTransparent===true && color!=='Transparent'){
+      setItemPrice(Number(data.price)+20)
+    }else if(data.isTransparent===false && color==='Transparent'){
+      setItemPrice(Number(data.price)-20)
+    }else{
+      setItemPrice(data.price)
+    }
+    setSelectedColor(color);
   }
 
   return (
@@ -31,6 +42,7 @@ const Popup = ({ toggle, toggleModal, data, doorder }) => {
         classname="placeorderpopup"
       >
         <div className="d-flex gap-3 align-items-center ">
+          <button onClick={()=>console.log(data)}>click</button>
           <div>
             <a href={data.imageurl} target="_blank" rel="noreferrer">
               <img
@@ -44,7 +56,7 @@ const Popup = ({ toggle, toggleModal, data, doorder }) => {
           <div>
             <div className="heartbeat">
               <MdCurrencyRupee />
-              {data.price} <span className="fs-10">+shipping</span>
+              {itemPrice} <span className="fs-10">+shipping</span>
             </div>
           </div>
         </div>
@@ -62,8 +74,10 @@ const Popup = ({ toggle, toggleModal, data, doorder }) => {
                       ? "color-selected colorpallatediv fs-8 d-flex align-items-center justify-content-center"
                       : "colorpallatediv fs-8 d-flex align-items-center justify-content-center"
                   }
-                  onClick={() => setSelectedColor(color.name)}
-                ><div className="text-center">{color.name}</div></div>
+                  onClick={() =>  handlePriceBasedOnAddOns(color.name)}
+                >
+                  <div className="text-center">{color.name}</div>
+                </div>
               </div>
             );
           })}
@@ -105,7 +119,7 @@ const Popup = ({ toggle, toggleModal, data, doorder }) => {
                 as="textarea"
                 rows={3}
                 onClick={handleInputClick}
-                placeholder="Remarks and Customizations"
+                placeholder="Remarks and Customizations (mention the name to keep in the letter)"
                 value={remarks}
                 onChange={handleInputChange}
               />
@@ -123,12 +137,13 @@ const Popup = ({ toggle, toggleModal, data, doorder }) => {
               doorder(
                 data.imageurl,
                 data.sno,
-                data.price,
+                itemPrice,
                 remarks,
                 district,
                 name,
                 address,
-                selectedColor
+                selectedColor,
+                data.letter
               );
               setRemarks("");
             }}
