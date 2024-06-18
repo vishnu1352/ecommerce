@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { itemslist } from "../utils/Itemslist";
 import "./Items.scss";
 import { MdCurrencyRupee, MdFilterListAlt } from "react-icons/md";
@@ -136,22 +136,23 @@ const Items = () => {
     setSelectedSort(sortby);
   };
 
-  const filterByType = (type) => {
-    const itemsFilteredByType = originalItemsList.filter(
-      (item) => item.type === type
-    );
 
-    if (selectedSortByType.includes(type)) {
-      setSelectedSortByType([]);
-      setSortedItemsList(originalItemsList);
-    } else {
-      //setSelectedSortByType(type);
-      setSelectedSortByType((prev) =>
-        prev.includes(type) ? prev.filter((l) => l !== type) : [...prev, type]
-      );
-      setSortedItemsList(itemsFilteredByType);
-    }
+
+  const filterByType = (type) => {
+    setSelectedSortByType((prev) =>
+      prev.includes(type) ? prev.filter((t) => t !== type) : [...prev, type]
+    );
   };
+  
+  useEffect(() => {
+    const itemsFilteredByType = originalItemsList.filter((item) => {
+      return selectedSortByType.length === 0 || selectedSortByType.includes(item.type);
+    });
+    setSortedItemsList(itemsFilteredByType);
+  }, [selectedSortByType]);
+  // Assuming originalItemsList, selectedSortByType, and sortedItemsList are defined somewhere in your component's state.
+  
+  
 
   return (
     <>
