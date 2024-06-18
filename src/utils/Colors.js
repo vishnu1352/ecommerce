@@ -1,8 +1,8 @@
 export const colorCodes = [
   {
-      'sno':1,
-      'name':"Transparent",
-      'colorCode':'#FFFFFF'
+    sno: 1,
+    name: "Transparent",
+    colorCode: "#FFFFFF",
   },
   {
     sno: 2,
