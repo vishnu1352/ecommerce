@@ -94,7 +94,7 @@ const Items = () => {
       let redirecturl =
         "https://api.whatsapp.com/send?phone=9849888788&text=%0aID : " +
         sno +"%0a Selected Letter : " +
-        selectedLetter +
+        selectedLetter.toUpperCase() +
         "%0a Name : " +
         name +
         "%0a Price : " +

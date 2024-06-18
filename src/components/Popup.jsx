@@ -59,11 +59,11 @@ const Popup = ({ toggle, toggleModal, data, doorder }) => {
             </div>
           </div>
         </div>
-        <div className="mt-3">
+        <div className="mt-3 fs-14">
           <b>Select Color</b>
         </div>
         <div className="d-flex gap-2">
-          {colorCodes.reverse().map((color, index) => {
+          {colorCodes.map((color, index) => {
             return (
               <div>
                 <div
@@ -89,7 +89,7 @@ const Popup = ({ toggle, toggleModal, data, doorder }) => {
               value={name}
               onClick={handleInputClick}
               onChange={(e) => setName(e.target.value)}
-              className="mb-3"
+              className="mb-3 fs-14"
             />
 
             <Form.Control
@@ -98,7 +98,7 @@ const Popup = ({ toggle, toggleModal, data, doorder }) => {
               value={district}
               onClick={handleInputClick}
               onChange={(e) => setDistrict(e.target.value)}
-              className="mb-3"
+              className="mb-3 fs-14"
             />
 
             <Form.Control
@@ -108,10 +108,11 @@ const Popup = ({ toggle, toggleModal, data, doorder }) => {
               placeholder="Enter Your Complete Address"
               value={address}
               onChange={handleAddress}
+              className="fs-14"
             />
 
             <Form.Group
-              className="mb-3 mt-3"
+              className="mb-3 mt-3 fs-14"
               controlId="exampleForm.ControlTextarea1"
             >
               <Form.Control
@@ -121,17 +122,18 @@ const Popup = ({ toggle, toggleModal, data, doorder }) => {
                 placeholder="Remarks and Customizations (mention the name to keep in the letter)"
                 value={remarks}
                 onChange={handleInputChange}
+                className="fs-14"
               />
             </Form.Group>
           </Form>
         </div>
-        <div className="d-flex justify-content-end gap-2">
-          <Button variant="secondary" onClick={toggleModal}>
+        <div className="d-flex justify-content-end gap-2 fs-14">
+          <Button variant="secondary" onClick={toggleModal} className="fs-14">
             Close
           </Button>
           <Button
             variant="primary"
-            className="placeorder-button"
+            className="placeorder-button fs-12"
             onClick={() => {
               doorder(
                 data.imageurl,
