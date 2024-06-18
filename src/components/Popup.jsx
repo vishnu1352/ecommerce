@@ -42,7 +42,6 @@ const Popup = ({ toggle, toggleModal, data, doorder }) => {
         classname="placeorderpopup"
       >
         <div className="d-flex gap-3 align-items-center ">
-          <button onClick={()=>console.log(data)}>click</button>
           <div>
             <a href={data.imageurl} target="_blank" rel="noreferrer">
               <img
