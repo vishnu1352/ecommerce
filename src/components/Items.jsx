@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { itemslist } from "../utils/Itemslist";
 import "./Items.scss";
 import { MdCurrencyRupee, MdFilterListAlt } from "react-icons/md";
 import Popup from "./Popup";
 import Header from "./Header";
 import Modalcomponent from "./Modalcomponent";
-
 
 const Items = () => {
   const [showModal, setShowModal] = useState(false);
@@ -16,7 +15,10 @@ const Items = () => {
   const [sortedItemsList, setSortedItemsList] = useState(
     [...itemslist].reverse()
   );
+  const [originalItemsList] = useState([...itemslist].reverse());
   const [selectedSort, setSelectedSort] = useState(""); // State to track selected sorting option
+  const [selectedSortByType, setSelectedSortByType] = useState([]);
+  const uniqueItemTypesRef = useRef(null);
 
   const toggleModal = () => {
     setShowModal((prev) => !prev);
@@ -56,7 +58,22 @@ const Items = () => {
     return false; // Added to satisfy the array filter function's requirement for a boolean return
   });
 
-  const placeOrder = (imgurl, sno, price, remarks, district, name, address,selectedColor) => {
+  let itemTypeArrayWithDuplicates = [];
+  originalItemsList.forEach((item, index) => {
+    itemTypeArrayWithDuplicates.push(item.type);
+  });
+  uniqueItemTypesRef.current = [...new Set(itemTypeArrayWithDuplicates)];
+
+  const placeOrder = (
+    imgurl,
+    sno,
+    price,
+    remarks,
+    district,
+    name,
+    address,
+    selectedColor
+  ) => {
     if (name === "") {
       alert("Please Enter Your Name");
       return false;
@@ -69,7 +86,7 @@ const Items = () => {
       alert("Please Enter address");
       return false;
     }
-    let choosenColor = selectedColor === ''?'transparent':selectedColor;
+    let choosenColor = selectedColor === "" ? "transparent" : selectedColor;
 
     // eslint-disable-next-line no-restricted-globals
     if (confirm("Press OK to place your order !")) {
@@ -84,7 +101,9 @@ const Items = () => {
         "%0a Address : " +
         address +
         "%0a District : " +
-        district + "%0a Selected Color : "+choosenColor+
+        district +
+        "%0a Selected Color : " +
+        choosenColor +
         "%0aCustomizations : " +
         remarks +
         "%0a %0a UPI ID :  9849888788-2@ybl %0a Registered Name : Vutukuru Radhika %0a %0a 📍 radhikaworks.netlify.app %0a %0a" +
@@ -115,6 +134,23 @@ const Items = () => {
     });
     setSortedItemsList(sorted);
     setSelectedSort(sortby);
+  };
+
+  const filterByType = (type) => {
+    const itemsFilteredByType = originalItemsList.filter(
+      (item) => item.type === type
+    );
+
+    if (selectedSortByType.includes(type)) {
+      setSelectedSortByType([]);
+      setSortedItemsList(originalItemsList);
+    } else {
+      //setSelectedSortByType(type);
+      setSelectedSortByType((prev) =>
+        prev.includes(type) ? prev.filter((l) => l !== type) : [...prev, type]
+      );
+      setSortedItemsList(itemsFilteredByType);
+    }
   };
 
   return (
@@ -233,6 +269,30 @@ const Items = () => {
                   {String.fromCharCode(65 + i)}
                 </div>
               ))}
+            </div>
+
+            <div className="divider my-3"></div>
+            <p className="fs-18">
+              <b>Filter By Type</b>
+            </p>
+            <div className="d-flex gap-2 flex-wrap">
+              {uniqueItemTypesRef.current &&
+                uniqueItemTypesRef.current.map((type, index) => {
+                  return (
+                    <div
+                      onClick={() => {
+                        filterByType(type);
+                      }}
+                      className={
+                        selectedSortByType.includes(type)
+                          ? "sort-selected fs-12"
+                          : "sort-disabled fs-12"
+                      }
+                    >
+                      {type}
+                    </div>
+                  );
+                })}
             </div>
           </Modalcomponent>
         )}
