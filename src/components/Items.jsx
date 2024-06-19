@@ -65,7 +65,6 @@ const Items = () => {
   uniqueItemTypesRef.current = [...new Set(itemTypeArrayWithDuplicates)];
 
   const placeOrder = (
-    imgurl,
     sno,
     price,
     remarks,
@@ -73,7 +72,8 @@ const Items = () => {
     name,
     address,
     selectedColor,
-    selectedLetter
+    selectedLetter,
+    nameOnItem
   ) => {
     if (name === "") {
       alert("Please Enter Your Name");
@@ -87,6 +87,10 @@ const Items = () => {
       alert("Please Enter address");
       return false;
     }
+    if (nameOnItem === "") {
+      alert("Please Enter The Name You Want To Display On Item");
+      return false;
+    }
     let choosenColor = selectedColor === "" ? "transparent" : selectedColor;
 
     // eslint-disable-next-line no-restricted-globals
@@ -94,8 +98,8 @@ const Items = () => {
       let redirecturl =
         "https://api.whatsapp.com/send?phone=9849888788&text=%0aID : " +
         sno +"%0a Selected Letter : " +
-        selectedLetter.toUpperCase() +
-        "%0a Name : " +
+        selectedLetter.toUpperCase() +"%0a Name to be mentioned on item : "+nameOnItem+
+        "%0a Name of Customer : " +
         name +
         "%0a Price : " +
         price +
@@ -109,8 +113,9 @@ const Items = () => {
         "%0aCustomizations : " +
         remarks +
         "%0a %0a UPI ID :  9849888788-2@ybl %0a Registered Name : Vutukuru Radhika %0a %0a 📍 radhikaworks.netlify.app %0a %0a" +
-        imgurl +
-        "%0a %0a *Thank you for choosing us, kindly please process the payment at earliest and share us the screenshot. We will keep you updated on the status of the product* %0a😃 😃 😃🤝🤝🤝🤝🤝😃 😃 😃";
+        "%0a %0a *Thank you for choosing us, kindly please process the payment at earliest and share us the screenshot. We will keep you updated on the status of the product*%0a"+
+        "*You Will Get You Order With In 10 to 15 Days. Thank You For You Patience*"+ 
+        "%0a😃 😃 😃🤝🤝🤝🤝🤝😃 😃 😃";
       setTimeout(() => {
         window.location.href = redirecturl;
       }, 500);
