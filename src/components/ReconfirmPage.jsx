@@ -19,7 +19,11 @@ const ReconfirmPage = () => {
       data.letter.toUpperCase() +
       "%0a Name to be mentioned on item : " +
       data.nameOnItem +
-      "%0a Name of Customer : " +
+      "%0a Selected Color : " +
+      choosenColor +
+      "%0aCustomizations : " +
+      data.remarks +
+      "%0a%0a*ADDRESS*%0a--------------------------------%0aName of Customer : " +
       data.name +
       "%0a Price : " +
       data.itemPrice +
@@ -28,12 +32,8 @@ const ReconfirmPage = () => {
       data.address +
       "%0a District : " +
       data.district +
-      "%0a Selected Color : " +
-      choosenColor +
-      "%0aCustomizations : " +
-      data.remarks +
       "%0a %0a UPI ID :  9849888788-2@ybl %0a Registered Name : Vutukuru Radhika %0a %0a 📍 radhikaworks.netlify.app %0a %0a" +
-      "*Thank you for choosing us, kindly please process the payment at earliest and share us the screenshot. We will keep you updated on the status of the product*%0a" +
+      "*Thank you for choosing us, kindly please process the payment at earliest and share us the screenshot. We will keep you updated on the status of the product.*%0a%0a" +
       "*You Will Get You Order With In 10 to 15 Days. Thank You For You Patience*" +
       "%0a😃 😃 😃🤝🤝🤝🤝🤝😃 😃 😃";
     setTimeout(() => {
