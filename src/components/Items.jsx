@@ -6,6 +6,7 @@ import Popup from "./Popup";
 import Header from "./Header";
 import Modalcomponent from "./Modalcomponent";
 import { Button } from "react-bootstrap";
+import sendRequestFunc from "../utils/sendRequestFunc";
 
 const Items = () => {
   const [showModal, setShowModal] = useState(false);
