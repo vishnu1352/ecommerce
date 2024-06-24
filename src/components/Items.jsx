@@ -5,6 +5,7 @@ import { MdCurrencyRupee, MdFilterListAlt } from "react-icons/md";
 import Popup from "./Popup";
 import Header from "./Header";
 import Modalcomponent from "./Modalcomponent";
+import { Button } from "react-bootstrap";
 
 const Items = () => {
   const [showModal, setShowModal] = useState(false);
@@ -300,6 +301,9 @@ const Items = () => {
                     </div>
                   );
                 })}
+            </div>
+            <div className="d-flex justify-content-end">
+              <Button onClick={()=>setShowFilterModal((prev) => !prev)} className="fs-12">Close</Button>
             </div>
           </Modalcomponent>
         )}
