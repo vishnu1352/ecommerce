@@ -63,8 +63,11 @@ const AddInventory = () => {
         isTransparent: "",
         type: "",
       });
+    }else{
+      toast.error(response.message);
+      setLoading(false);
     }
-    console.log(response);
+    
   };
 
   useEffect(() => {
