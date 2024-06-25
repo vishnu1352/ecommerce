@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
-import { BsThreeDotsVertical } from "react-icons/bs";
 import sendRequestFunc from "../../../utils/sendRequestFunc";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -41,7 +40,7 @@ const ViewInventory = () => {
     <ToastContainer position="top-right" autoClose={1500} />
       <div className="p-3">
         <div>
-          <Button onClick={()=>navigate(-1)} className="fs-12"  >
+          <Button onClick={()=>navigate('/addinventory')} className="fs-12"  >
             <MdOutlineKeyboardBackspace />
           </Button>
           
