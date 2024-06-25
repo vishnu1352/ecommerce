@@ -5,6 +5,7 @@ import ReconfirmPage from './components/ReconfirmPage';
 import AddInventory from './components/admin/AddInventory';
 import ViewInventory from './components/admin/viewInventory/ViewInventory';
 import EditInventory from './components/admin/editInventory/EditInventory';
+import MyOrders from './components/admin/orders/MyOrders';
 
 const AppRoutes = () => {
   return (
@@ -14,6 +15,8 @@ const AppRoutes = () => {
       <Route path="/addinventory" element={<AddInventory />} />
       <Route path="/viewinventory" element={<ViewInventory />} />
       <Route path="/editinventory" element={<EditInventory />} />
+      <Route path="/myorders" element={<MyOrders />} />
+
     </Routes>
   )
 }

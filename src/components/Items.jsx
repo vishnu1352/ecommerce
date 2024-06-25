@@ -66,65 +66,6 @@ const Items = () => {
   });
   uniqueItemTypesRef.current = [...new Set(itemTypeArrayWithDuplicates)];
 
-  const placeOrder = (
-    sno,
-    price,
-    remarks,
-    district,
-    name,
-    address,
-    selectedColor,
-    selectedLetter,
-    nameOnItem
-  ) => {
-    if (name === "") {
-      alert("Please Enter Your Name");
-      return false;
-    }
-    if (district === "") {
-      alert("Please Enter District");
-      return false;
-    }
-    if (address === "") {
-      alert("Please Enter address");
-      return false;
-    }
-    if (nameOnItem === "") {
-      alert("Please Enter The Name You Want To Display On Item");
-      return false;
-    }
-    let choosenColor = selectedColor === "" ? "transparent" : selectedColor;
-
-    // eslint-disable-next-line no-restricted-globals
-    if (confirm("Press OK to place your order !")) {
-      let redirecturl =
-        "https://api.whatsapp.com/send?phone=9849888788&text=%0aID : " +
-        sno +"%0a Selected Letter : " +
-        selectedLetter.toUpperCase() +"%0a Name to be mentioned on item : "+nameOnItem+
-        "%0a Name of Customer : " +
-        name +
-        "%0a Price : " +
-        price +
-        " %2B shipping" +
-        "%0a Address : " +
-        address +
-        "%0a District : " +
-        district +
-        "%0a Selected Color : " +
-        choosenColor +
-        "%0aCustomizations : " +
-        remarks +
-        "%0a %0a UPI ID :  9849888788-2@ybl %0a Registered Name : Vutukuru Radhika %0a %0a 📍 radhikaworks.netlify.app %0a %0a" +
-        "%0a %0a *Thank you for choosing us, kindly please process the payment at earliest and share us the screenshot. We will keep you updated on the status of the product*%0a"+
-        "*You Will Get You Order With In 10 to 15 Days. Thank You For You Patience*"+ 
-        "%0a😃 😃 😃🤝🤝🤝🤝🤝😃 😃 😃";
-      setTimeout(() => {
-        window.location.href = redirecturl;
-      }, 500);
-      setShowModal(false);
-    } else {
-    }
-  };
 
   const handleItemClick = (item) => {
     setItemForModal(item);
@@ -215,7 +156,6 @@ const Items = () => {
             toggle={showModal}
             toggleModal={toggleModal}
             data={itemForModal}
-            doorder={placeOrder}
           />
         )}
         {showFilterModal && (

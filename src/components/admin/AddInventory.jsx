@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
+import Dropdown from "react-bootstrap/Dropdown";
 import Spinner from "react-bootstrap/Spinner";
 import Modal from "react-bootstrap/Modal";
 import Select from "react-select";
@@ -12,6 +13,8 @@ import { Button } from "react-bootstrap";
 import { BASEURL } from "../../utils/URL";
 import { useNavigate } from "react-router-dom";
 import { MdOutlineKeyboardBackspace } from "react-icons/md";
+import './AddInventory.scss';
+import { IoMdMenu } from "react-icons/io";
 const AddInventory = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
@@ -63,11 +66,10 @@ const AddInventory = () => {
         isTransparent: "",
         type: "",
       });
-    }else{
+    } else {
       toast.error(response.message);
       setLoading(false);
     }
-    
   };
 
   useEffect(() => {
@@ -90,14 +92,29 @@ const AddInventory = () => {
         </Modal>
       )}
       {/* price,letter,isTransparent,type */}
-      <div className="container p-3 fs-14">
+      <div className="container p-3 fs-14 addinventory">
         <div className="d-flex justify-content-between fs-12">
-        <Button onClick={() => navigate(-1)} className="fs-12">
+          <Button onClick={() => navigate(-1)} className="fs-12">
             <MdOutlineKeyboardBackspace />
           </Button>
-          <Button onClick={() => navigate("/viewinventory")}  className="fs-12">
-            View Inventory
-          </Button>
+
+          <div className="fs-12">
+            <Dropdown className="options-dropdown">
+              <Dropdown.Toggle variant="primary" id="dropdown-basic">
+                <IoMdMenu />  
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu>
+                <Dropdown.Item
+                  onClick={() => navigate("/viewinventory")}
+                  className="fs-12"
+                >
+                  View Inventory
+                </Dropdown.Item>
+                <Dropdown.Item className="fs-12" onClick={() => navigate("/myorders")}>My Orders</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </div>
         </div>
 
         <Card className="shadow mt-3 p-3">

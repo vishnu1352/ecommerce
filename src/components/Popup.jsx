@@ -12,18 +12,20 @@ const Popup = ({ toggle, toggleModal, data, doorder }) => {
   const [remarks, setRemarks] = useState("");
   const [district, setDistrict] = useState("");
   const [name, setName] = useState("");
+  const [phone,setPhone] =useState("")
   const [address, setAddress] = useState("");
   const [selectedColor, setSelectedColor] = useState(null);
   const [itemPrice, setItemPrice] = useState(data.price);
   const [nameOnItem, setNameOnItem] = useState("");
   const [reconfirmState, setReConfirmState] = useState({
     sno: data.sno,
-    image:data.imageurl,
+    image: data.imageurl,
     itemPrice: data.price,
     remarks: "",
     district: "",
     name: "",
     address: "",
+    phone: "",
     selectedColor: "transparent",
     letter: data.letter.toUpperCase(),
     nameOnItem: "",
@@ -92,7 +94,6 @@ const Popup = ({ toggle, toggleModal, data, doorder }) => {
         onHide={toggleModal}
         classname="placeorderpopup"
       >
-        
         <div className="d-flex gap-3 align-items-center ">
           <div>
             <a href={data.imageurl} target="_blank" rel="noreferrer">
@@ -180,6 +181,21 @@ const Popup = ({ toggle, toggleModal, data, doorder }) => {
                   setReConfirmState((prev) => ({
                     ...prev,
                     name: e.target.value,
+                  }));
+                }}
+                className="mb-3 fs-14"
+              />
+
+              <Form.Control
+                type="number"
+                placeholder="Enter Your Phone Number"
+                value={phone}
+                onClick={handleInputClick}
+                onChange={(e) => {
+                  setPhone(e.target.value);
+                  setReConfirmState((prev) => ({
+                    ...prev,
+                    phone: e.target.value,
                   }));
                 }}
                 className="mb-3 fs-14"
