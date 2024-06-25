@@ -5,10 +5,15 @@ import Row from "react-bootstrap/Row";
 import Spinner from "react-bootstrap/Spinner";
 import Modal from "react-bootstrap/Modal";
 import Select from "react-select";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import sendRequestFunc from "../../utils/sendRequestFunc";
 import { Button } from "react-bootstrap";
 import { BASEURL } from "../../utils/URL";
+import { useNavigate } from "react-router-dom";
+import { MdOutlineKeyboardBackspace } from "react-icons/md";
 const AddInventory = () => {
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [item, setItem] = useState({
     price: 0,
@@ -44,10 +49,21 @@ const AddInventory = () => {
     setItem({ ...item, type: e.value });
   };
 
-  const addItemToDb = () => {
+  const addItemToDb = async () => {
     setLoading(true);
-    const response = sendRequestFunc(`${BASEURL}/addItem`, "POST", item);
-    if (response) setLoading(false);
+    const response = await sendRequestFunc(`${BASEURL}/addItem`, "POST", item);
+
+    if (response.statusCode === 200) {
+      setLoading(false);
+      toast.success("Item added successfully...");
+      setItem({
+        price: 0,
+        letter: "",
+        imageUrl: "",
+        isTransparent: "",
+        type: "",
+      });
+    }
     console.log(response);
   };
 
@@ -57,21 +73,35 @@ const AddInventory = () => {
 
   return (
     <>
+      <ToastContainer position="top-right" autoClose={2000} />
       {loading && (
-        <Modal show={loading} size="sm" aria-labelledby="example-modal-sizes-title-sm" centered={true}>
+        <Modal
+          show={loading}
+          size="sm"
+          aria-labelledby="example-modal-sizes-title-sm"
+          centered={true}
+        >
           <Modal.Body className="text-center">
-            <Spinner
-              animation="border"
-              variant="success"
-              
-            />
+            <Spinner animation="border" variant="success" />
           </Modal.Body>
         </Modal>
       )}
       {/* price,letter,isTransparent,type */}
-      <div className="container">
+      <div className="container p-3 fs-14">
+        <div className="d-flex justify-content-between fs-12">
+        <Button onClick={() => navigate(-1)} className="fs-12">
+            <MdOutlineKeyboardBackspace />
+          </Button>
+          <Button onClick={() => navigate("/viewinventory")}  className="fs-12">
+            View Inventory
+          </Button>
+        </div>
+
         <Card className="shadow mt-3 p-3">
           <h4 className="text-center">Add Items</h4>
+          <div>
+            <img src={item.imageUrl} alt="" style={{ width: "200px" }} />
+          </div>
           <Form>
             <Row>
               <Form.Group className="mb-3 col-lg-6" controlId="formBasicEmail">
@@ -80,7 +110,7 @@ const AddInventory = () => {
                   type="text"
                   name="imageUrl"
                   onChange={handleInput}
-                  value={setItem.imageUrl}
+                  value={item.imageUrl}
                 />
               </Form.Group>
               <Form.Group className="mb-3 col-lg-6" controlId="formBasicEmail">
@@ -89,7 +119,7 @@ const AddInventory = () => {
                   type="number"
                   name="price"
                   onChange={handleInput}
-                  value={setItem.price}
+                  value={item.price}
                 />
               </Form.Group>
               <Form.Group className="mb-3 col-lg-6" controlId="formBasicEmail">
@@ -98,7 +128,7 @@ const AddInventory = () => {
                   type="text"
                   name="letter"
                   onChange={handleInput}
-                  value={setItem.letter}
+                  value={item.letter}
                 />
               </Form.Group>
               <Form.Group className="mb-3 col-lg-6" controlId="formBasicEmail">
