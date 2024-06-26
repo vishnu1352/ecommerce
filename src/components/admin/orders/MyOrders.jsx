@@ -25,7 +25,7 @@ const MyOrders = () => {
     console.log(response);
     if (response.statusCode === 200) {
        totalAmountRef.current = response.totalAmount;
-      setOrderData(response.orders); 
+      setOrderData(response.orders.reverse()); 
     }
   };
   const viewOrder = (myOrder) => {

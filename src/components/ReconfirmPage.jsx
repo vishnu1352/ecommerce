@@ -97,7 +97,7 @@ const ReconfirmPage = () => {
             <div>{data.selectedColor}</div>
           </div>
           <div className="d-flex gap-2 mt-3">
-            <div className="fw-bold">Remarks and Customizations : </div>
+            <div className="fw-bold">Customizations : </div>
             <div>{data.remarks}</div>
           </div>
 

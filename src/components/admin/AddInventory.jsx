@@ -96,7 +96,7 @@ const AddInventory = () => {
       {/* price,letter,isTransparent,type */}
       <div className="container p-3 fs-14 addinventory">
         <div className="d-flex justify-content-between fs-12">
-          <Button onClick={() => navigate(-1)} className="fs-12">
+          <Button onClick={() => navigate('/')} className="fs-12">
             <MdOutlineKeyboardBackspace />
           </Button>
 
