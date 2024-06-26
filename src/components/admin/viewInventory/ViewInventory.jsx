@@ -49,7 +49,7 @@ const ViewInventory = () => {
           return (
             <div className="d-flex justify-content-between align-items-center p-3 border border-light rounded my-3 shadow" >
               <div>
-                <img src={item.imageUrl} alt="" style={{ width: "100px" }} />
+                <img src={item.imageUrl} alt="" style={{ width: "60px" }} />
               </div>
               <div>
                 <p className="m-0">{item.price}</p>

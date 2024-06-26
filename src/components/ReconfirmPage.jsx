@@ -54,7 +54,7 @@ const ReconfirmPage = () => {
 
   return (
     <>
-      <ToastContainer position="top-right" autoClose={5000} />
+      <ToastContainer position="top-right" autoClose={2000} />
       <div className="reconfirmpage">
         <div className="d-flex gap-2 p-3 reconfirmheader ">
           <div onClick={() => navigate(-1)}>
@@ -80,6 +80,10 @@ const ReconfirmPage = () => {
           </div>
         </div>
         <div className="mt-3 px-3 fs-14">
+        <div className="d-flex gap-2 mt-3">
+            <div className="fw-bold">Order Id : </div>
+            <div>{data.sno}</div>
+          </div>
           <div className="d-flex gap-2 mt-3">
             <div className="fw-bold">Selected Letter : </div>
             <div>{data.letter}</div>

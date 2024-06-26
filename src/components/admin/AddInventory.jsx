@@ -19,7 +19,7 @@ const AddInventory = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [item, setItem] = useState({
-    price: 0,
+    price: null,
     letter: "",
     imageUrl: "",
     isTransparent: "",
@@ -27,12 +27,13 @@ const AddInventory = () => {
   });
   const [typesDropdown, setTypesDropdown] = useState([]);
   const isTransparentOptions = [
+    {value:'--',label:'--'},
     { value: true, label: "Yes" },
     { value: false, label: "No" },
   ];
 
   const getItemTypes = async () => {
-    const options = [];
+    const options = [{value:'--',label:'--'}];
     const response = await sendRequestFunc(`${BASEURL}/getItemTypes`, "GET");
     if (response) setLoading(false);
     await response.forEach((type) =>
@@ -67,8 +68,9 @@ const AddInventory = () => {
         type: "",
       });
     } else {
-      toast.error(response.message);
       setLoading(false);
+      toast.error(response.message);
+      
     }
   };
 
@@ -155,6 +157,7 @@ const AddInventory = () => {
                 <Form.Label>IsTransparent</Form.Label>
                 <Select
                   options={isTransparentOptions}
+                  defaultValue={isTransparentOptions[0]}
                   name="isTransparent"
                   onChange={handleIsTransparentDropdown}
                 />
@@ -165,6 +168,7 @@ const AddInventory = () => {
                   options={typesDropdown}
                   name="type"
                   onChange={handleTypeDropdown}
+                  defaultValue={typesDropdown[0]}
                 />
               </Form.Group>
             </Row>

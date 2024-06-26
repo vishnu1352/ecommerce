@@ -18,8 +18,8 @@ const Popup = ({ toggle, toggleModal, data, doorder }) => {
   const [itemPrice, setItemPrice] = useState(data.price);
   const [nameOnItem, setNameOnItem] = useState("");
   const [reconfirmState, setReConfirmState] = useState({
-    sno: data.sno,
-    image: data.imageurl,
+    sno: data._id,
+    image: data.imageUrl,
     itemPrice: data.price,
     remarks: "",
     district: "",
@@ -96,9 +96,9 @@ const Popup = ({ toggle, toggleModal, data, doorder }) => {
       >
         <div className="d-flex gap-3 align-items-center ">
           <div>
-            <a href={data.imageurl} target="_blank" rel="noreferrer">
+            <a href={data.imageUrl} target="_blank" rel="noreferrer">
               <img
-                src={data.imageurl}
+                src={data.imageUrl}
                 alt={data.price}
                 width="50px"
                 className="popupimage heartbeat"

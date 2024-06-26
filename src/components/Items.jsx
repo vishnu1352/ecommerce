@@ -1,76 +1,70 @@
 import React, { useEffect, useRef, useState } from "react";
-import { itemslist } from "../utils/Itemslist";
-import "./Items.scss";
 import { MdCurrencyRupee, MdFilterListAlt } from "react-icons/md";
 import Popup from "./Popup";
 import Header from "./Header";
 import Modalcomponent from "./Modalcomponent";
 import { Button } from "react-bootstrap";
-import sendRequestFunc from "../utils/sendRequestFunc";
+import { ItemsFromApi } from "../utils/ItemsFromApi";
+import "./Items.scss";
 
 const Items = () => {
   const [showModal, setShowModal] = useState(false);
+  const [itemsList, setItemsList] = useState([]);
   const [itemForModal, setItemForModal] = useState(null);
   const [showFilterModal, setShowFilterModal] = useState(false);
   const [selectedLetters, setSelectedLetters] = useState([]);
   const [showSno, setShowSno] = useState(false);
-  const [sortedItemsList, setSortedItemsList] = useState(
-    [...itemslist].reverse()
-  );
-  const [originalItemsList] = useState([...itemslist].reverse());
-  const [selectedSort, setSelectedSort] = useState(""); // State to track selected sorting option
+  const [sortedItemsList, setSortedItemsList] = useState([]);
+  const [originalItemsList, setOriginalItemsList] = useState([]);
+  const [selectedSort, setSelectedSort] = useState("");
   const [selectedSortByType, setSelectedSortByType] = useState([]);
-  const uniqueItemTypesRef = useRef(null);
+  const uniqueItemTypesRef = useRef([]);
 
   const toggleModal = () => {
-    setShowModal((prev) => !prev);
+    setShowModal(prev => !prev);
   };
 
   const toggleFilterModal = () => {
-    setShowFilterModal(true);
+    setShowFilterModal(prev => !prev);
   };
 
   const handleCheckboxChange = (letter) => {
-    setSelectedLetters((prev) =>
-      prev.includes(letter)
-        ? prev.filter((l) => l !== letter)
-        : [...prev, letter]
+    setSelectedLetters(prev =>
+      prev.includes(letter) ? prev.filter(l => l !== letter) : [...prev, letter]
     );
   };
 
-  // const handleCheckboxChange = (letter) => {
-  //   setSelectedLetters((prev) => {
-  //     const newSet = new Set(prev);
-  //     if (newSet.has(letter)) {
-  //       newSet.delete(letter);
-  //     } else {
-  //       newSet.add(letter);
-  //     }
-  //     return Array.from(newSet);
-  //   });
-  // }
-
-  const filteredItems = sortedItemsList.filter((item) => {
-    if (
-      selectedLetters.length === 0 ||
-      selectedLetters.includes(item.letter.toUpperCase())
-    ) {
+  const filteredItems = sortedItemsList.filter(item => {
+    if (selectedLetters.length === 0 || selectedLetters.includes(item.letter.toUpperCase())) {
       return item;
     }
-    return false; // Added to satisfy the array filter function's requirement for a boolean return
+    return false;
   });
 
-  let itemTypeArrayWithDuplicates = [];
-  originalItemsList.forEach((item, index) => {
-    itemTypeArrayWithDuplicates.push(item.type);
-  });
-  uniqueItemTypesRef.current = [...new Set(itemTypeArrayWithDuplicates)];
+  const getAllItems = async () => {
+    try {
+      const response = await ItemsFromApi();
+      console.log(response);
+      setItemsList(response);
+      setOriginalItemsList(response);
 
-
-  const handleItemClick = (item) => {
-    setItemForModal(item);
-    toggleModal();
+      // Set unique item types
+      uniqueItemTypesRef.current = [...new Set(response.map(item => item.type))];
+    } catch (error) {
+      console.error("Error fetching items:", error);
+    }
   };
+
+  useEffect(() => {
+    getAllItems();
+  }, []);
+
+  useEffect(() => {
+    const itemsFilteredByType = originalItemsList.filter(item =>
+      selectedSortByType.length === 0 || selectedSortByType.includes(item.type)
+    );
+    setSortedItemsList(itemsFilteredByType);
+  }, [selectedSortByType, originalItemsList]);
 
   const sortBy = (sortby) => {
     const sorted = [...sortedItemsList].sort((a, b) => {
@@ -87,44 +81,33 @@ const Items = () => {
   };
 
   const filterByType = (type) => {
-    setSelectedSortByType((prev) =>
-      prev.includes(type) ? prev.filter((t) => t !== type) : [...prev, type]
+    setSelectedSortByType(prev =>
+      prev.includes(type) ? prev.filter(t => t !== type) : [...prev, type]
     );
   };
 
-  useEffect(() => {
-    const itemsFilteredByType = originalItemsList.filter((item) => {
-      return (
-        selectedSortByType.length === 0 ||
-        selectedSortByType.includes(item.type)
-      );
-    });
-    setSortedItemsList(itemsFilteredByType);
-  }, [selectedSortByType]);
-  // Assuming originalItemsList, selectedSortByType, and sortedItemsList are defined somewhere in your component's state.
+  const handleItemClick = (item) => {
+    setItemForModal(item);
+    toggleModal();
+  };
 
   return (
     <>
       <Header>
-        <p
-          className="menuicon m-0 p-3"
-          onClick={() => toggleFilterModal()}
-          style={{ cursor: "pointer" }}
-        >
+        <p className="menuicon m-0 p-3" onClick={toggleFilterModal} style={{ cursor: "pointer" }}>
           <MdFilterListAlt />
         </p>
       </Header>
       <div className="itemsdiv my-4">
         {filteredItems && filteredItems.length > 0 ? (
-          filteredItems.map((item) => (
+          filteredItems.map((item,index) => (
             <div
               className="itemcontainer"
-              onClick={() => handleItemClick(item)}
-              sno={item.sno}
-              key={item.id} // Use a unique identifier if available
+              onClick={() => handleItemClick(item,index+1)}
+              key={item._id} // Use a unique identifier
             >
               <div>
-                <img src={item.imageurl} alt="keychain" className="image" />
+                <img src={item.imageUrl} alt="keychain" className="image" />
               </div>
               <div className="mx-3 mt-2 price">
                 <div>
@@ -137,7 +120,7 @@ const Items = () => {
               </div>
               {showSno && (
                 <div className="fs-10 d-flex justify-content-center">
-                  {item.sno}
+                  {index+1}
                 </div>
               )}
             </div>
@@ -161,36 +144,23 @@ const Items = () => {
         {showFilterModal && (
           <Modalcomponent
             show={showFilterModal}
-            onHide={() => setShowFilterModal((prev) => !prev)}
+            onHide={toggleFilterModal}
           >
             <p className="fs-18">
-              <b
-                onClick={() => {
-                  setShowSno((prev) => !prev);
-                  setShowFilterModal((prev) => !prev);
-                }}
-              >
+              <b onClick={() => { setShowSno(prev => !prev); setShowFilterModal(prev => !prev); }}>
                 Sort By Price
               </b>
             </p>
             <div className="d-flex gap-2 border-bottom-1">
               <div
                 onClick={() => sortBy("hl")}
-                className={
-                  selectedSort === "hl"
-                    ? "sort-selected fs-12"
-                    : "sort-disabled fs-12"
-                }
+                className={selectedSort === "hl" ? "sort-selected fs-12" : "sort-disabled fs-12"}
               >
                 High to low
               </div>
               <div
                 onClick={() => sortBy("lh")}
-                className={
-                  selectedSort === "lh"
-                    ? "sort-selected fs-12"
-                    : "sort-disabled fs-12"
-                }
+                className={selectedSort === "lh" ? "sort-selected fs-12" : "sort-disabled fs-12"}
               >
                 Low to High
               </div>
@@ -205,12 +175,11 @@ const Items = () => {
             <div className="d-flex gap-2 flex-wrap">
               {Array.from({ length: 26 }, (_, i) => (
                 <div
+                  key={String.fromCharCode(65 + i)} // Added unique key
                   value={String.fromCharCode(65 + i)}
-                  onClick={() =>
-                    handleCheckboxChange(String.fromCharCode(65 + i))
-                  }
+                  onClick={() => handleCheckboxChange(String.fromCharCode(65 + i))}
                   className={
-                    selectedLetters.indexOf(String.fromCharCode(65 + i)) > -1
+                    selectedLetters.includes(String.fromCharCode(65 + i))
                       ? "letter-selected d-flex justify-content-center align-items-center fs-10"
                       : "letter-disabled d-flex justify-content-center align-items-center fs-10"
                   }
@@ -225,26 +194,25 @@ const Items = () => {
               <b>Filter By Type</b>
             </p>
             <div className="d-flex gap-2 flex-wrap">
-              {uniqueItemTypesRef.current &&
-                uniqueItemTypesRef.current.map((type, index) => {
-                  return (
-                    <div
-                      onClick={() => {
-                        filterByType(type);
-                      }}
-                      className={
-                        selectedSortByType.includes(type)
-                          ? "sort-selected fs-12"
-                          : "sort-disabled fs-12"
-                      }
-                    >
-                      {type}
-                    </div>
-                  );
-                })}
+              {uniqueItemTypesRef.current.map((type, index) => (
+                <div
+                  key={type} // Added unique key
+                  onClick={() => filterByType(type)}
+                  className={
+                    selectedSortByType.includes(type) ? "sort-selected fs-12" : "sort-disabled fs-12"
+                  }
+                >
+                  {type}
+                </div>
+              ))}
             </div>
             <div className="d-flex justify-content-end">
-              <Button onClick={()=>setShowFilterModal((prev) => !prev)} className="fs-12">Close</Button>
+              <Button
+                onClick={toggleFilterModal}
+                className="fs-12"
+              >
+                Close
+              </Button>
             </div>
           </Modalcomponent>
         )}
