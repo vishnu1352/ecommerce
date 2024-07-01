@@ -16,3 +16,16 @@
 .fs-8{
     font-size:8px !important;
 }
+
+.fw-500{
+    font-weight: 500 !important;
+}
+.fw-600{
+    font-weight: 600 !important;
+}
+.fw-bold{
+    font-weight: bold !important;
+}
+.fw-bolder{
+    font-weight: bolder !important;
+}

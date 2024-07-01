@@ -42,7 +42,7 @@ const EditInventory = () => {
     const options = [];
     const response = await sendRequestFunc(`${BASEURL}/getItemTypes`, "GET");
     if (response) setLoading(false);
-    await response.forEach((type) =>
+    await response.types.forEach((type) =>
       options.push({ value: type.type, label: type.type })
     );
     setTypesDropdown(options);
@@ -82,7 +82,8 @@ const EditInventory = () => {
         <Card.Img
           variant="top"
           src={item.imageUrl}
-          style={{ width: "200px" }}
+          className="shadow"
+          style={{ width: "100px" }}
         />
         <Card.Body>
           <Card.Text>

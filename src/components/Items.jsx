@@ -8,8 +8,10 @@ import "react-toastify/dist/ReactToastify.css";
 import { Button } from "react-bootstrap";
 import { ItemsFromApi } from "../utils/ItemsFromApi";
 import "./Items.scss";
+import { useNavigate } from "react-router-dom";
 
-const Items = () => {
+const Items = ({ itemType }) => {
+  const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const [itemForModal, setItemForModal] = useState(null);
   const [showFilterModal, setShowFilterModal] = useState(false);
@@ -50,7 +52,7 @@ const Items = () => {
   const getAllItems = async () => {
     const myPromise = new Promise(async (resolve, reject) => {
       try {
-        const response = await ItemsFromApi();
+        const response = await ItemsFromApi(itemType);
         if (response) {
           setOriginalItemsList(response.reverse());
 
@@ -116,6 +118,12 @@ const Items = () => {
   return (
     <>
       <Header>
+        <p
+          className="m-0 p-3 text-center fs-18"
+          onDoubleClick={() => navigate("/login")}
+        >
+          Radhika Works
+        </p>
         <p
           className="menuicon m-0 p-3"
           onClick={toggleFilterModal}

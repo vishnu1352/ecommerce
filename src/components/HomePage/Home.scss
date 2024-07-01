@@ -1,0 +1,17 @@
+@import '../../styles/variables.scss';
+
+.homepage{
+    .navbar{
+        background-color: $primary;
+        color:$textcolor !important;
+        .navbar-brand{
+            color:$textcolor;
+        }
+    }
+
+    .cardbadge{
+        background-color: $primary !important;
+        color:$textcolor !important;
+    }
+    
+}
