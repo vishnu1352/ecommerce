@@ -6,6 +6,7 @@ import {
   Container,
   Badge,
   Card,
+  Spinner,
 } from "react-bootstrap";
 import { RxHamburgerMenu } from "react-icons/rx";
 import "./Home.scss";
@@ -72,7 +73,7 @@ const Home = () => {
         <div className="mt-2">
           <div className="px-3">
             {types &&
-              types.length > 0 &&
+              types.length > 0 ? (
               types.map((typ, index) => (
                 <Card className="mb-3 shadow">
                   <Card.Img
@@ -91,7 +92,11 @@ const Home = () => {
                     </Badge>
                   </Card.Body>
                 </Card>
-              ))}
+              ))):
+              <div className="text-center">
+                <Spinner animation="border" variant="primary" />
+              </div>
+              }
           </div>
         </div>
         <div className="my-4 text-center">
