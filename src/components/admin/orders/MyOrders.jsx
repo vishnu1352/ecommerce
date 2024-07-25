@@ -97,6 +97,9 @@ const MyOrders = () => {
               <Dropdown.Item onClick={() => fliterByStatus("pending")}>
                 Pending
               </Dropdown.Item>
+              <Dropdown.Item onClick={() => fliterByStatus("inProcess")}>
+                InProcess
+              </Dropdown.Item>
               <Dropdown.Item onClick={() => fliterByStatus("completed")}>
                 Completed
               </Dropdown.Item>
@@ -122,14 +125,9 @@ const MyOrders = () => {
                         <FaIndianRupeeSign /> {myOrder.price}
                       </div>
                       <div>
-                        <Badge
-                          bg={
-                            myOrder.status === "pending" ? "danger" : "success"
-                          }
-                          className="fs-10"
-                        >
-                          {myOrder.status}
-                        </Badge>
+                        {myOrder.status==="pending" && <Badge bg="danger">{myOrder.status}</Badge>}
+                        {myOrder.status==="inProcess" && <Badge bg="warning">{myOrder.status}</Badge>}
+                        {myOrder.status==="completed" && <Badge bg="success">{myOrder.status}</Badge>}
                       </div>
                       <div onClick={() => viewOrder(myOrder)}>
                         <HiMiniEye />
@@ -233,6 +231,7 @@ const MyOrders = () => {
                     <select onChange={(e) => changeStatusFunc(e)}>
                       <option value="---">Set Status</option>
                       <option value="pending">pending</option>
+                      <option value="inProcess">In-Process</option>
                       <option value="completed">completed</option>
                     </select>
                   </div>
