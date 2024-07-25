@@ -24,7 +24,7 @@ const Home = () => {
   const getAllTypes = async () => {
     const response = await sendRequestFunc(`${BASEURL}/getItemTypes`, "GET");
     if (response.statusCode === 200) {
-      setTypes(response.types);
+      setTypes(response.types.reverse());
     } else {
       // Handle error if needed
     }
