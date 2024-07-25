@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import { MdCurrencyRupee } from "react-icons/md";
@@ -9,10 +9,11 @@ import { colorCodes } from "../utils/Colors";
 import { useNavigate } from "react-router-dom";
 
 const Popup = ({ toggle, toggleModal, data, doorder }) => {
+  const [showColors, setShowColors] = useState(false);
   const [remarks, setRemarks] = useState("");
   const [district, setDistrict] = useState("");
   const [name, setName] = useState("");
-  const [phone,setPhone] =useState("")
+  const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [selectedColor, setSelectedColor] = useState(null);
   const [itemPrice, setItemPrice] = useState(data.price);
@@ -29,6 +30,7 @@ const Popup = ({ toggle, toggleModal, data, doorder }) => {
     selectedColor: "transparent",
     letter: data.letter.toUpperCase(),
     nameOnItem: "",
+    type:data.type,
   });
   const navigate = useNavigate();
   const handleInputClick = (event) => {
@@ -67,10 +69,10 @@ const Popup = ({ toggle, toggleModal, data, doorder }) => {
   }
 
   function redirectToReConfirmPage() {
-    if (reconfirmState.nameOnItem === "") {
-      alert("Please Enter The Name You Want To Display On Item");
-      return false;
-    }
+    // if (reconfirmState.nameOnItem === "") {
+    //   alert("Please Enter The Name You Want To Display On Item");
+    //   return false;
+    // }
     if (reconfirmState.name === "") {
       alert("Please Enter Your Name");
       return false;
@@ -87,6 +89,11 @@ const Popup = ({ toggle, toggleModal, data, doorder }) => {
     navigate("/reconfirm", { state: { reconfirmState } });
   }
 
+  useEffect(() => {
+    if (data.type === "keychain" || data.type === "locket") {
+      setShowColors(true);
+    }
+  }, []);
   return (
     <>
       <Modalcomponent
@@ -113,33 +120,37 @@ const Popup = ({ toggle, toggleModal, data, doorder }) => {
           </div>
         </div>
         <div className="placeorderdiv">
-          <div className="mt-3 fs-14">
-            <b>Select Color</b>
-          </div>
-          <div className="d-flex gap-2">
-            {colorCodes.map((color, index) => {
-              return (
-                <div>
-                  <div
-                    style={{ backgroundColor: color.colorCode }}
-                    className={
-                      selectedColor === color.name
-                        ? "color-selected colorpallatediv fs-8 d-flex align-items-center justify-content-center"
-                        : "colorpallatediv fs-8 d-flex align-items-center justify-content-center"
-                    }
-                    onClick={() => handlePriceBasedOnAddOns(color.name)}
-                  >
-                    <div className="text-center">{color.name}</div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+          {showColors && (
+            <div>
+              <div className="mt-3 fs-14">
+                <b>Select Color</b>
+              </div>
+              <div className="d-flex gap-2">
+                {colorCodes.map((color, index) => {
+                  return (
+                    <div>
+                      <div
+                        style={{ backgroundColor: color.colorCode }}
+                        className={
+                          selectedColor === color.name
+                            ? "color-selected colorpallatediv fs-8 d-flex align-items-center justify-content-center"
+                            : "colorpallatediv fs-8 d-flex align-items-center justify-content-center"
+                        }
+                        onClick={() => handlePriceBasedOnAddOns(color.name)}
+                      >
+                        <div className="text-center">{color.name}</div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
           <div className="mt-3">
             <Form>
               <Form.Control
                 type="text"
-                placeholder="Enter Name You Want On Item"
+                placeholder="Enter Name You Want On Item (optional)"
                 value={nameOnItem}
                 onClick={handleInputClick}
                 onChange={(e) => {
