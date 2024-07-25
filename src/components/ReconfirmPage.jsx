@@ -12,6 +12,7 @@ const ReconfirmPage = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
   const data = state.reconfirmState;
+  console.log(data)
   const placeOrder = async () => {
     let response = await sendRequestFunc(`${BASEURL}/placeOrder`, "POST", data);
     if (response.statusCode === 200) {
@@ -23,7 +24,7 @@ const ReconfirmPage = () => {
         "https://api.whatsapp.com/send?phone=9849888788&text=%0aID : " +
         data.sno +
         "%0a Selected Letter : " +
-        data.letter.toUpperCase() +
+        data.letter.toUpperCase() +", "+data.type.toUpperCase()+
         "%0a Name to be mentioned on item : " +
         data.nameOnItem +
         "%0a Selected Color : " +
@@ -86,10 +87,10 @@ const ReconfirmPage = () => {
           </div>
           <div className="d-flex gap-2 mt-3">
             <div className="fw-bold">Selected Letter : </div>
-            <div>{data.letter}</div>
+            <div>{`${data.letter}, ${data.type}`}</div>
           </div>
           <div className="d-flex gap-2 mt-3">
-            <div className="fw-bold">Name On Item : </div>
+            <div className="fw-bold">Name On Item (optional) : </div>
             <div>{data.nameOnItem}</div>
           </div>
           <div className="d-flex gap-2 mt-3">
