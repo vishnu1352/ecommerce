@@ -86,6 +86,11 @@ const Popup = ({ toggle, toggleModal, data, doorder }) => {
       return false;
     }
 
+    if(reconfirmState.phone.length>10 || reconfirmState.phone.length<10){
+      alert("Please Enter valid 10 digits phone number");
+      return false;
+    }
+
     navigate("/reconfirm", { state: { reconfirmState } });
   }
 
